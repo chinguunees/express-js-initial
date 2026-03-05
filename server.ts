@@ -18,26 +18,40 @@ server.get("/books", async (req: Request, res: Response) => {
 
   res.status(200).json({ message: "Ok", books });
 });
-
-server.post("/books/:id", async (req: Request, res: Response) => {
-  const params = req.params;
-  const { title, id } = req.body;
+server.get("/books/:id", async (req: Request, res: Response) => {
+  const { id } = req.params;
   const books = await getBooks();
+  const book = books.find((book) => String(book.id) === id);
+
+  res.status(200).json({ message: "Ok", book });
+});
+
+server.post("/books/", async (req: Request, res: Response) => {
+  const { title } = req.body;
+  const books: BookType[] = await getBooks();
   const newBookId = books.length + 1;
   const newBook = { id: newBookId, title };
+  books.push(newBook);
 
-  res.status(200).json({ message: "ok", books });
+  const writeJsonFile = async () => {
+    try {
+      await fs.writeFile("./db.json", JSON.stringify(books), "utf8");
+      console.log("File created successfully");
+    } catch (err) {
+      console.error("Error writing file:", err);
+    }
+  };
+
+  writeJsonFile();
+
+  res.status(200).json({ message: "Амжилттай шинэ ном нэмэгдлээ", books });
 });
 
 server.listen(port, () => {
   console.log(`"Server aslaa", http://localhost:${port}`);
 });
 
-const writeToFile = async (books: string) => {
-  try {
-    await fs.writeFile("./db.json", books, "utf-8");
-    console.log("test");
-  } catch (error) {
-    console.error(error);
-  }
+type BookType = {
+  id: number;
+  title: string;
 };
