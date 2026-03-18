@@ -2,6 +2,7 @@ import usersRouter from "./src/router/users.router";
 import categoryRouter from "./src/router/categories.router";
 import express from "express";
 import foodsRouter from "./src/router/foods.router";
+import ordersRouter from "./src/router/orders.router";
 
 type Book = {
   id: number;
@@ -24,6 +25,10 @@ server.use("/category", categoryRouter);
 //////// FOOOOOOOODS
 
 server.use("/foods", foodsRouter);
+
+///////// ORDERSSSSS
+
+server.use("/orders", ordersRouter);
 
 server.listen(port, () => {
   console.log(`"Server aslaa", http://localhost:${port}`);
