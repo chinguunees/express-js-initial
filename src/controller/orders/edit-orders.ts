@@ -10,7 +10,7 @@ export const editOrder = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { status } = req.body;
   try {
-    const order = await prisma.foodOrder.updateMany({
+    const order = await prisma.foodOrder.update({
       where: { id: Number(id) },
       data: { status },
     });
