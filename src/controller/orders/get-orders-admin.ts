@@ -22,11 +22,11 @@ export const getOrders = async (req: Request, res: Response) => {
   try {
     const decoded = jwt.verify(accessToken, jwtSecret) as Token;
 
-    const orders = await prisma.foodOrder.findMany({
-      where: {
-        userId: decoded.data.userId,
-      },
-    });
+    if (decoded.data.role !== "ADMIN") {
+      res.status(400).json({ message: "invalid credetials" });
+    }
+
+    const orders = await prisma.foodOrder.findMany();
     res.status(200).json({ message: "Ok", orders });
   } catch (error) {
     res.send(error);
