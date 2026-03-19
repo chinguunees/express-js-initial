@@ -15,18 +15,22 @@ export const getOrders = async (req: Request, res: Response) => {
 
   const accessToken = authorization?.split(" ")[1];
 
-  if (!accessToken) return res.send("no");
+  if (!accessToken) return res.send("No no nouuu");
 
-  const jwtSecret = process.env.CHINGUUNII_NUUTS!;
+  const secretToken = process.env.CHINGUUNII_NUUTS!;
 
   try {
-    const decoded = jwt.verify(accessToken, jwtSecret) as Token;
+    const decoded = jwt.verify(accessToken, secretToken) as Token;
 
     const orders = await prisma.foodOrder.findMany({
       where: {
         userId: decoded.data.userId,
       },
     });
+    if (decoded.data.role === "ADMIN") {
+      const orderAdmin = await prisma.foodOrder.findMany();
+      return res.status(200).json({ message: "Admin", orderAdmin });
+    }
     res.status(200).json({ message: "Ok", orders });
   } catch (error) {
     res.send(error);

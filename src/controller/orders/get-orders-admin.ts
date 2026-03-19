@@ -10,17 +10,17 @@ type Token = {
   };
 };
 
-export const getOrders = async (req: Request, res: Response) => {
+export const getOrdersAdmin = async (req: Request, res: Response) => {
   const { authorization } = req.headers;
 
   const accessToken = authorization?.split(" ")[1];
 
   if (!accessToken) return res.send("no");
 
-  const jwtSecret = process.env.CHINGUUNII_NUUTS!;
+  const secretToken = process.env.CHINGUUNII_NUUTS!;
 
   try {
-    const decoded = jwt.verify(accessToken, jwtSecret) as Token;
+    const decoded = jwt.verify(accessToken, secretToken) as Token;
 
     if (decoded.data.role !== "ADMIN") {
       res.status(400).json({ message: "invalid credetials" });
