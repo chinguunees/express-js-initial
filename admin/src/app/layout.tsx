@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/app/components/sidebar";
+import { Profile } from "./components/Profile";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <AppSidebar />
       <main>
         <SidebarTrigger />
+        <Profile />
         {children}
       </main>
     </SidebarProvider>
