@@ -14,6 +14,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
+import { useRouter } from "next/navigation";
 
 export function AddFoodTest() {
   const [open, setOpen] = useState(false);
@@ -21,6 +22,7 @@ export function AddFoodTest() {
   const [priceValue, setPriceValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState("");
+  const router = useRouter();
 
   const onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setFoodName(event.target.value);
@@ -48,6 +50,7 @@ export function AddFoodTest() {
         body: JSON.stringify(postBody),
       });
       setOpen(false);
+      router.refresh();
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +71,7 @@ export function AddFoodTest() {
               >
                 +
               </Button>
-              <p>Add new Dish to Appetizer</p>
+              <p>Add new Dish</p>
             </div>
           </div>
         </DialogTrigger>
