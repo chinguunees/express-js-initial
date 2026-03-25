@@ -10,7 +10,9 @@ const router = express.Router();
 
 router.get("/", getFoods);
 
-router.post("/", authMiddleware, adminMiddleware, addFoods);
+// router.post("/", authMiddleware, adminMiddleware, addFoods);
+
+router.post("/", addFoods);
 
 router.delete("/:id", authMiddleware, adminMiddleware, deleteFoods);
 

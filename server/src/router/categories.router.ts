@@ -10,7 +10,9 @@ const router = express.Router();
 
 router.get("/", getCategories);
 
-router.post("/", authMiddleware, adminMiddleware, addCategories);
+// router.post("/", authMiddleware, adminMiddleware, addCategories);
+
+router.post("/", addCategories);
 
 router.delete("/:id", authMiddleware, adminMiddleware, deleteCategories);
 

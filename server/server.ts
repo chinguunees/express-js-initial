@@ -3,6 +3,7 @@ import categoryRouter from "./src/router/categories.router";
 import express from "express";
 import foodsRouter from "./src/router/foods.router";
 import ordersRouter from "./src/router/orders.router";
+import cors from "cors";
 
 type Book = {
   id: number;
@@ -11,6 +12,8 @@ type Book = {
 
 const server = express();
 const port = 3001;
+
+server.use(cors());
 
 server.use(express.json());
 
