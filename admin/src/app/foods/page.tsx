@@ -31,6 +31,7 @@ const Foods = async () => {
                     name={food.name}
                     id={food.id}
                     price={food.price}
+                    image={food.image}
                   />
                 );
               })}

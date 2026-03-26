@@ -35,6 +35,7 @@ model Food {
   price String
   category FoodCategory @relation(fields: [foodCategoryId], references: [id])
   foodCategoryId Int
+  image String
   foodOrderItems FoodOrderItem[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

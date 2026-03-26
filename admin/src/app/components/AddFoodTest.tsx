@@ -28,6 +28,7 @@ export function AddFoodTest(props: AddFoodTestProps) {
   const [priceValue, setPriceValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState("");
+  const [foodImage, setFoodImage] = useState("");
   const router = useRouter();
   console.log(category);
 
@@ -36,6 +37,9 @@ export function AddFoodTest(props: AddFoodTestProps) {
   };
   const onChangePrice: ChangeEventHandler<HTMLInputElement> = (event) => {
     setPriceValue(event.target.value);
+  };
+  const onChangeImage: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setFoodImage(event.target.value);
   };
   const onSelect = (categoryId: string) => {
     setCategory(categoryId);
@@ -46,6 +50,7 @@ export function AddFoodTest(props: AddFoodTestProps) {
       name: foodName,
       price: priceValue,
       foodCategoryId: Number(category),
+      image: foodImage,
     };
     try {
       await fetch("http://localhost:3001/foods", {
@@ -91,10 +96,10 @@ export function AddFoodTest(props: AddFoodTestProps) {
               <Label className="w-40">Dish name</Label>
               <Input type="text" onChange={onChange} />
             </div>
-            {/* <div className="flex gap-2">
-              <Label className="w-40">Dish category</Label>
-              <Input type="text" onChange={onChangeCategory} />
-            </div> */}
+            <div className="flex gap-2">
+              <Label className="w-40">Image URL</Label>
+              <Input type="text" onChange={onChangeImage} />
+            </div>
             {/* <div className="flex gap-2">
               <Label className="w-40">Ingredients</Label>
               <Input type="text" />
