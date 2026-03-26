@@ -13,8 +13,6 @@ const Foods = async () => {
     (category) => category.foods.length,
   );
 
-  // const desserts = category.find((cat) => cat.name === "Desserts")?.foods;
-
   return (
     <div className="flex flex-col gap-2 ml-50 h-auto w-[1171px] font-display">
       <CategoriesList />
@@ -25,7 +23,7 @@ const Foods = async () => {
               {category.name} {category.foods.length}
             </h1>
             <div className="grid grid-cols-4 justify-start">
-              <AddFoodTest />
+              <AddFoodTest categories={categories} />
               {category.foods.map((food) => {
                 return (
                   <FoodCard
@@ -40,37 +38,6 @@ const Foods = async () => {
           </div>
         );
       })}
-    </div>
-  );
-
-  return (
-    <div>
-      <div className="flex flex-col gap-6 ml-50">
-        <CategoriesList />
-        <div className="w-[1171px] h-auto bg-white rounded-2xl p-5">
-          <h1 className="font-display font-bold">Appetizer</h1>
-          <div className="flex">
-            <AppetizerList />
-          </div>
-        </div>
-        <SaladsList />
-
-        <div className="w-[1171px] h-auto bg-white rounded-2xl flex flex-col p-5">
-          <h1 className="font-display font-bold">All Foods</h1>
-          <div className="grid grid-cols-4">
-            {categories.map((cat) =>
-              cat.foods.map((food) => (
-                <FoodCard
-                  key={food.id}
-                  name={food.name}
-                  id={food.id}
-                  price={food.price}
-                />
-              )),
-            )}
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

@@ -15,14 +15,21 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
+import { CategorySelector } from "./CategorySelector";
+import { Category } from "@/lib/types";
 
-export function AddFoodTest() {
+type AddFoodTestProps = {
+  categories: Category[];
+};
+
+export function AddFoodTest(props: AddFoodTestProps) {
   const [open, setOpen] = useState(false);
   const [foodName, setFoodName] = useState("");
   const [priceValue, setPriceValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState("");
   const router = useRouter();
+  console.log(category);
 
   const onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setFoodName(event.target.value);
@@ -30,10 +37,9 @@ export function AddFoodTest() {
   const onChangePrice: ChangeEventHandler<HTMLInputElement> = (event) => {
     setPriceValue(event.target.value);
   };
-  const onChangeCategory: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setCategory(event.target.value);
+  const onSelect = (categoryId: string) => {
+    setCategory(categoryId);
   };
-
   const onAddFood = async () => {
     setLoading(true);
     const postBody = {
@@ -85,10 +91,10 @@ export function AddFoodTest() {
               <Label className="w-40">Dish name</Label>
               <Input type="text" onChange={onChange} />
             </div>
-            <div className="flex gap-2">
+            {/* <div className="flex gap-2">
               <Label className="w-40">Dish category</Label>
               <Input type="text" onChange={onChangeCategory} />
-            </div>
+            </div> */}
             {/* <div className="flex gap-2">
               <Label className="w-40">Ingredients</Label>
               <Input type="text" />
@@ -97,10 +103,13 @@ export function AddFoodTest() {
               <Label className="w-40">Price</Label>
               <Input type="text" onChange={onChangePrice} />
             </div>
-            {/* <div className="flex gap-2">
-              <Label className="w-40">Image</Label>
-              <Input type="text" />
-            </div> */}
+            <div className="flex gap-10">
+              <Label className="w-40">Category</Label>
+              <CategorySelector
+                categories={props.categories}
+                onSelect={onSelect}
+              />
+            </div>
           </div>
 
           <DialogFooter className="sm:justify-end">
