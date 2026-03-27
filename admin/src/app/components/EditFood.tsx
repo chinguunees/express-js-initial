@@ -69,6 +69,23 @@ export function EditFood({ food, categories }: EditFoodProps) {
 
     setLoading(false);
   };
+  const deleteFood = async () => {
+    setLoading(true);
+    try {
+      await fetch(`http://localhost:3001/foods/${food.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setOpen(false);
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+    }
+
+    setLoading(false);
+  };
 
   return (
     <div>
@@ -80,9 +97,11 @@ export function EditFood({ food, categories }: EditFoodProps) {
         </DialogTrigger>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Add new</DialogTitle>
+            <DialogTitle className="font-bold text-[#EF4444] font-display">
+              Edit {foodName}
+            </DialogTitle>
           </DialogHeader>
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 font-display">
             <div className="flex gap-2">
               <Label className="w-40">Dish name</Label>
               <Input type="text" onChange={onChange} value={foodName} />
@@ -105,9 +124,21 @@ export function EditFood({ food, categories }: EditFoodProps) {
             </div>
           </div>
 
-          <DialogFooter className="sm:justify-end">
+          <DialogFooter className="sm:justify-between font-display px-15">
+            <Button
+              type="button"
+              onClick={deleteFood}
+              disabled={loading}
+              className="bg-red-400"
+            >
+              {loading ? <LoaderCircle className="animate-spin" /> : "Delete"}
+            </Button>
             <Button type="button" onClick={onAddFood} disabled={loading}>
-              {loading ? <LoaderCircle className="animate-spin" /> : "Add Dish"}
+              {loading ? (
+                <LoaderCircle className="animate-spin" />
+              ) : (
+                "Update Dish"
+              )}
             </Button>
           </DialogFooter>
         </DialogContent>
