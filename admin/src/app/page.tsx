@@ -1,4 +1,4 @@
 const Home = async () => {
-  return <div></div>;
+  return <div>Food delivery</div>;
 };
 export default Home;
