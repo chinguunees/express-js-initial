@@ -30,7 +30,7 @@ export function AddCategory() {
       name: categoryName,
     };
     try {
-      await fetch("https://express-js-initial.onrender.com/category", {
+      await fetch("http://localhost:3001/category", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

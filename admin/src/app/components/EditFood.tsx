@@ -54,7 +54,7 @@ export function EditFood({ food, categories }: EditFoodProps) {
       image: foodImage,
     };
     try {
-      await fetch(`https://express-js-initial.onrender.com/${food.id}`, {
+      await fetch(`http://localhost:3001/foods/${food.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
