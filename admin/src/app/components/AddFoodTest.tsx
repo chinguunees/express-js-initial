@@ -53,7 +53,7 @@ export function AddFoodTest({ categories }: AddFoodTestProps) {
       image: foodImage,
     };
     try {
-      await fetch("http://localhost:3001/foods", {
+      await fetch("https://express-js-initial.onrender.com/foods", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

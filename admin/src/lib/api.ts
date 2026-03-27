@@ -1,6 +1,7 @@
 import { Category } from "./types";
 
-const urlCategory = `http://localhost:3001/category/`;
+// const urlCategory = `http://localhost:3001/category/`;
+const urlCategory = `https://express-js-initial.onrender.com/category/`;
 
 const options = {
   method: "GET",
