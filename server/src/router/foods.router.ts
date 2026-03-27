@@ -16,6 +16,7 @@ router.post("/", addFoods);
 
 router.delete("/:id", authMiddleware, adminMiddleware, deleteFoods);
 
-router.put("/:id", authMiddleware, adminMiddleware, editFoods);
+router.put("/:id", editFoods);
+// router.put("/:id", authMiddleware, adminMiddleware, editFoods);
 
 export default router;

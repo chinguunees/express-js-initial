@@ -7,6 +7,7 @@ export type Category = {
 };
 
 export type Food = {
+  image: string;
   id: number;
   name: string;
   price: string;

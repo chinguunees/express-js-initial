@@ -1,13 +1,29 @@
+import { Button } from "@/components/ui/button";
+import { Pencil } from "lucide-react";
+import { EditFood } from "./EditFood";
+import { Category, Food } from "@/lib/types";
+
+type FoodProps = {
+  food: Food;
+  categories: Category[];
+};
+
 export const FoodCard = async (props: FoodProps) => {
-  const { price, name, id, image } = props;
+  const { food, categories } = props;
+
+  const { image, name, price } = food;
+
   return (
     <div className="relative mx-auto w-[270px] h-[241px] pt-0 mt-10 items-center border rounded-2xl flex flex-col font-display">
       <div className="absolute inset-0 z-30 aspect-video" />
       <img
         src={image}
         alt="food cover"
-        className="relative z-20 w-[240px] h-[129px] object-cover rounded-2xl mt-4"
+        className="relative z-20 w-[240px] h-[129px] object-cover rounded-2xl mt-4 relative"
       />
+      <div className="absolute right-10 bottom-30 z-30">
+        <EditFood food={food} categories={categories} />
+      </div>
       <div className="w-[240px] flex h-8 justify-between mt-2 items-center">
         <p className="font-bold text-[#EF4444] text-[14px] ">{name}</p>
         <p className="font-bold text-[12px]">₮{price}</p>
@@ -19,10 +35,4 @@ export const FoodCard = async (props: FoodProps) => {
       </div>
     </div>
   );
-};
-type FoodProps = {
-  price: string;
-  name: string;
-  id: number;
-  image: string;
 };

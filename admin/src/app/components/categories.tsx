@@ -13,7 +13,7 @@ const CategoriesList = async () => {
       <div className="flex ml-4 gap-3">
         {category.map((cat) => (
           <Button variant={"secondary"} key={cat.id}>
-            {cat.name}
+            {cat.name} {cat.foods.length}
           </Button>
         ))}
         <AddCategory />

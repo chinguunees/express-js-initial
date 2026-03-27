@@ -1,9 +1,6 @@
 import { getCategory } from "@/lib/api";
 import { FoodCard } from "../components/FoodCard";
-import { Button } from "@/components/ui/button";
 import CategoriesList from "../components/categories";
-import AppetizerList from "../components/AppetizerList";
-import SaladsList from "../components/SaladsList";
 import { AddFoodTest } from "../components/AddFoodTest";
 
 const Foods = async () => {
@@ -26,13 +23,7 @@ const Foods = async () => {
               <AddFoodTest categories={categories} />
               {category.foods.map((food) => {
                 return (
-                  <FoodCard
-                    key={food.id}
-                    name={food.name}
-                    id={food.id}
-                    price={food.price}
-                    image={food.image}
-                  />
+                  <FoodCard key={food.id} food={food} categories={categories} />
                 );
               })}
             </div>
