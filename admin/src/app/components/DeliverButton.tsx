@@ -10,37 +10,52 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { editOrderAdmin, getOrdersAdmin } from "@/lib/api";
+import { useRouter } from "next/navigation";
 
-export function DeliveryButton() {
-  const [showStatusBar, setShowStatusBar] = React.useState(true);
-  const [showActivityBar, setShowActivityBar] = React.useState(false);
-  const [showPanel, setShowPanel] = React.useState(false);
+type DeliveryButtonProps = {
+  orderStatus: string;
+  orderId: number;
+};
+
+export function DeliveryButton({ orderId, orderStatus }: DeliveryButtonProps) {
+  const [status, setStatus] = React.useState(orderStatus);
+  // const [showPanel, setShowPanel] = React.useState(false);
+  const router = useRouter();
+
+  const onCheckedChange = async (status: string) => {
+    setStatus(status);
+    console.log(orderId, orderStatus, status);
+
+    await editOrderAdmin(orderId, status);
+    router.refresh();
+  };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">Pending</Button>
+        <Button variant="outline">{status}</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-40">
         <DropdownMenuGroup>
           <DropdownMenuLabel>Status</DropdownMenuLabel>
           <DropdownMenuCheckboxItem
-            checked={showStatusBar ?? false}
-            onCheckedChange={setShowStatusBar}
+            checked={status === "CANCELLED"}
+            onCheckedChange={() => onCheckedChange("CANCELLED")}
           >
-            Cancelled
+            CANCELLED
           </DropdownMenuCheckboxItem>
           <DropdownMenuCheckboxItem
-            checked={showActivityBar}
-            onCheckedChange={setShowActivityBar}
+            checked={status === "DELIVERED"}
+            onCheckedChange={() => onCheckedChange("DELIVERED")}
           >
-            Delivered
+            DELIVERED
           </DropdownMenuCheckboxItem>
           <DropdownMenuCheckboxItem
-            checked={showPanel}
-            onCheckedChange={setShowPanel}
+            checked={status === "PENDING"}
+            onCheckedChange={() => onCheckedChange("PENDING")}
           >
-            Pending
+            PENDING
           </DropdownMenuCheckboxItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

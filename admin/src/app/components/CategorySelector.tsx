@@ -26,10 +26,14 @@ export function CategorySelector(props: CategorySelectorProps) {
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>Categories</SelectLabel>
+          <SelectLabel className="font-display">Categories</SelectLabel>
           {categories.map((category) => {
             return (
-              <SelectItem key={category.id} value={String(category.id)}>
+              <SelectItem
+                key={category.id}
+                value={String(category.id)}
+                className="font-display"
+              >
                 {category.name}
               </SelectItem>
             );
