@@ -28,7 +28,7 @@ export const loginUser = async (req: Request, res: Response) => {
           },
         },
         tokenSecret!,
-        { expiresIn: "1h" },
+        { expiresIn: "24h" },
       );
 
       console.log("burtgeltei email", email);

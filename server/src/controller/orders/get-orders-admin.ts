@@ -26,7 +26,16 @@ export const getOrdersAdmin = async (req: Request, res: Response) => {
       res.status(400).json({ message: "invalid credetials" });
     }
 
-    const orders = await prisma.foodOrder.findMany();
+    const orders = await prisma.foodOrder.findMany({
+      include: {
+        foodOrderItems: {
+          include: {
+            food: true,
+          },
+        },
+        user: true,
+      },
+    });
     res.status(200).json({ message: "Ok", orders });
   } catch (error) {
     res.send(error);

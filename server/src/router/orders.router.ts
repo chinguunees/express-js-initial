@@ -9,7 +9,8 @@ import { adminMiddleware } from "../middleware/admin-middleware";
 const router = express.Router();
 
 router.get("/", getOrders);
-router.get("/admin", adminMiddleware, getOrdersAdmin);
+// router.get("/admin", adminMiddleware, getOrdersAdmin);
+router.get("/admin", getOrdersAdmin);
 router.post("/", addOrder);
 router.delete("/:id", deleteOrder);
 router.put("/:id", editOrder);
