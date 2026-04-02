@@ -1,7 +1,6 @@
-import { getOrdersAdmin } from "@/lib/api";
-import { Datepicker } from "../components/Date-picker";
+import { getOrdersAdmin } from "@/app/lib/api";
 import { Button } from "@/components/ui/button";
-import { DeliveryButton } from "../components/DeliverButton";
+
 import {
   Table,
   TableBody,
@@ -18,6 +17,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Datepicker } from "@/app/_components/Date-picker";
+import { DeliveryButton } from "@/app/_components/DeliverButton";
 
 const Orders = async () => {
   const ordersAdmin = await getOrdersAdmin();

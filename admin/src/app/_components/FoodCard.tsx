@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import { EditFood } from "./EditFood";
-import { Category, Food } from "@/lib/types";
+import { Category, Food } from "@/app/lib/types";
 
 type FoodProps = {
   food: Food;

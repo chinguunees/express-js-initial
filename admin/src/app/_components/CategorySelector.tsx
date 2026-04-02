@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 import { ChangeEventHandler } from "react";
 
-import { Category } from "@/lib/types";
+import { Category } from "@/app/lib/types";
 
 type CategorySelectorProps = {
   categories: Category[];

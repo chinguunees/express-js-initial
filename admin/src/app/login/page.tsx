@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useState } from "react";
+import { Profile } from "../_components/Profile";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -29,6 +30,7 @@ const SignIn = () => {
       body: JSON.stringify(body),
     });
     const data = await response.json();
+    console.log("teeest end", data);
 
     return data;
   };

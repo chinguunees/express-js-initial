@@ -16,21 +16,22 @@ import {
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
 import { CategorySelector } from "./CategorySelector";
-import { Category } from "@/lib/types";
+import { Category, Food } from "@/app/lib/types";
+import { Pencil } from "lucide-react";
 
-type AddFoodTestProps = {
+type EditFoodProps = {
+  food: Food;
   categories: Category[];
 };
 
-export function AddFoodTest({ categories }: AddFoodTestProps) {
+export function EditFood({ food, categories }: EditFoodProps) {
   const [open, setOpen] = useState(false);
-  const [foodName, setFoodName] = useState("");
-  const [priceValue, setPriceValue] = useState("");
+  const [foodName, setFoodName] = useState(food.name);
+  const [priceValue, setPriceValue] = useState(food.price);
   const [loading, setLoading] = useState(false);
   const [category, setCategory] = useState("");
-  const [foodImage, setFoodImage] = useState("");
+  const [foodImage, setFoodImage] = useState(food.image);
   const router = useRouter();
-  console.log(category);
 
   const onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setFoodName(event.target.value);
@@ -53,12 +54,29 @@ export function AddFoodTest({ categories }: AddFoodTestProps) {
       image: foodImage,
     };
     try {
-      await fetch("http://localhost:3001/foods", {
-        method: "POST",
+      await fetch(`http://localhost:3001/foods/${food.id}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(postBody),
+      });
+      setOpen(false);
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+    }
+
+    setLoading(false);
+  };
+  const deleteFood = async () => {
+    setLoading(true);
+    try {
+      await fetch(`http://localhost:3001/foods/${food.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
       setOpen(false);
       router.refresh();
@@ -73,32 +91,24 @@ export function AddFoodTest({ categories }: AddFoodTestProps) {
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <div className="relative mx-auto w-[270px] h-[241px] pt-0 mt-10 items-center  border rounded-2xl flex flex-col font-display border-red-500 border-dashed">
-            {" "}
-            <div className="flex flex-col items-center mt-23 gap-2">
-              <Button
-                variant={"destructive"}
-                className="rounded-3xl bg-red-400 text-white w-10 h-10 text-xl text-center"
-              >
-                +
-              </Button>
-              <p>Add new Dish</p>
-            </div>
-          </div>
+          <Button variant="outline">
+            <Pencil />
+          </Button>
         </DialogTrigger>
-
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Add new</DialogTitle>
+            <DialogTitle className="font-bold text-[#EF4444] font-display">
+              Edit {foodName}
+            </DialogTitle>
           </DialogHeader>
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 font-display">
             <div className="flex gap-2">
               <Label className="w-40">Dish name</Label>
-              <Input type="text" onChange={onChange} />
+              <Input type="text" onChange={onChange} value={foodName} />
             </div>
             <div className="flex gap-2">
               <Label className="w-40">Image URL</Label>
-              <Input type="text" onChange={onChangeImage} />
+              <Input type="text" onChange={onChangeImage} value={foodImage} />
             </div>
             {/* <div className="flex gap-2">
               <Label className="w-40">Ingredients</Label>
@@ -106,7 +116,7 @@ export function AddFoodTest({ categories }: AddFoodTestProps) {
             </div> */}
             <div className="flex gap-2">
               <Label className="w-40">Price</Label>
-              <Input type="text" onChange={onChangePrice} />
+              <Input type="text" onChange={onChangePrice} value={priceValue} />
             </div>
             <div className="flex gap-10">
               <Label className="w-40">Category</Label>
@@ -114,9 +124,21 @@ export function AddFoodTest({ categories }: AddFoodTestProps) {
             </div>
           </div>
 
-          <DialogFooter className="sm:justify-end">
+          <DialogFooter className="sm:justify-between font-display px-15">
+            <Button
+              type="button"
+              onClick={deleteFood}
+              disabled={loading}
+              className="bg-red-400"
+            >
+              {loading ? <LoaderCircle className="animate-spin" /> : "Delete"}
+            </Button>
             <Button type="button" onClick={onAddFood} disabled={loading}>
-              {loading ? <LoaderCircle className="animate-spin" /> : "Add Dish"}
+              {loading ? (
+                <LoaderCircle className="animate-spin" />
+              ) : (
+                "Update Dish"
+              )}
             </Button>
           </DialogFooter>
         </DialogContent>

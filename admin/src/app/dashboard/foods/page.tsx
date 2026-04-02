@@ -1,7 +1,7 @@
-import { getCategory } from "@/lib/api";
-import { FoodCard } from "../components/FoodCard";
-import CategoriesList from "../components/categories";
-import { AddFoodTest } from "../components/AddFoodTest";
+import { AddFoodTest } from "@/app/_components/AddFoodTest";
+import CategoriesList from "@/app/_components/categories";
+import { FoodCard } from "@/app/_components/FoodCard";
+import { getCategory } from "@/app/lib/api";
 
 const Foods = async () => {
   const categories = await getCategory();

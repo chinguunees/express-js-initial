@@ -16,7 +16,7 @@ export function AppSidebar() {
     <Sidebar className="font-display">
       <SidebarHeader />
       <SidebarContent className="flex items-center gap-5">
-        <img className="w-[165px] h-[44px]" src="Logo.svg" alt="" />
+        <img className="w-[165px] h-[44px]" src="../Logo.svg" alt="" />
         <Link
           href={"/foods"}
           className={` py-2 px-10 rounded-2xl  ${pathname === "/foods" ? "bg-black text-white" : ""}`}

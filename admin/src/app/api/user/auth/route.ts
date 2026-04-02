@@ -1,7 +1,9 @@
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 export type SignInResponse = {
   accessToken: string;
+  message?: string;
 };
 
 export async function POST(request: Request) {
@@ -16,11 +18,44 @@ export async function POST(request: Request) {
   });
   const data = (await response.json()) as SignInResponse;
 
-  cookieStore.set("token:", data.accessToken);
+  cookieStore.set("token", data.accessToken);
 
-  console.log("token shu", data.accessToken);
+  if (response.status !== 200) {
+    return NextResponse.json(
+      {
+        message: data.message,
+      },
+      { status: response.status },
+    );
+  }
 
-  //   console.log("token shu", data.accesstoken);
-
-  return new Response("ok");
+  return NextResponse.json(
+    {
+      message: "Successfully login",
+    },
+    { status: 200 },
+  );
 }
+
+// export const GET = async (req: NextResponse) => {
+//   return NextResponse.json(
+//     {
+//       message: "Successfully login",
+//     },
+//     { status: 200 },
+//   );
+// const cookieStore = await cookies();
+
+// const token = cookieStore.get("token")?.value;
+
+// const userData = await fetch("http://localhost:3001/users/auth/me", {
+//   method: "GET",
+//   headers: {
+//     Authorization: `Bearer ${token}`,
+//     "Content-Type": "application/json",
+//   },
+// });
+
+// const profile = await userData.json();
+// return profile;
+// };

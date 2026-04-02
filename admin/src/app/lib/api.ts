@@ -1,5 +1,3 @@
-// import { headers } from "next/headers";
-
 import { Category, FoodOrderItem, Order, User } from "./types";
 
 const urlCategory = `http://localhost:3001/category`;

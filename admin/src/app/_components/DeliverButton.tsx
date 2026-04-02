@@ -10,7 +10,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { editOrderAdmin, getOrdersAdmin } from "@/lib/api";
+import { editOrderAdmin, getOrdersAdmin } from "@/app/lib/api";
 import { useRouter } from "next/navigation";
 
 type DeliveryButtonProps = {

@@ -6,6 +6,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+// import { isProfileMe } from "@/app/lib/api";
 import {
   CreditCardIcon,
   LogOutIcon,
@@ -13,14 +14,20 @@ import {
   UserIcon,
 } from "lucide-react";
 
-export function Profile() {
+export async function Profile() {
+  // const response = await fetch("/api/user/auth", {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // });
+  // const data = await response.json();
+
   return (
     <div className="max-w-[1440px] flex items-end justify-end mb-10">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost">
-            <img src="/profile.svg" alt="profile" />
-          </Button>
+          <Button variant="ghost">Profile</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>

@@ -1,4 +1,4 @@
-import { getCategory } from "@/lib/api";
+import { getCategory } from "@/app/lib/api";
 import { Button } from "@/components/ui/button";
 import { AddCategory } from "./AddCategory";
 

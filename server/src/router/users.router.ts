@@ -7,6 +7,7 @@ import { editUser } from "../controller/users/edit-user";
 import { loginUser } from "../controller/users/login";
 import { authMiddleware } from "../middleware/auth-middleware";
 import { adminMiddleware } from "../middleware/admin-middleware";
+import { me } from "../controller/users/me";
 
 const router = express.Router();
 
@@ -19,5 +20,7 @@ router.delete("/:id", authMiddleware, adminMiddleware, deleteUser);
 router.put("/:id", authMiddleware, adminMiddleware, editUser);
 
 router.post("/login", loginUser);
+
+router.get("/auth/me", authMiddleware, me);
 
 export default router;
