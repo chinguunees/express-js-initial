@@ -18,13 +18,13 @@ export function AppSidebar() {
       <SidebarContent className="flex items-center gap-5">
         <img className="w-[165px] h-[44px]" src="../Logo.svg" alt="" />
         <Link
-          href={"/foods"}
+          href={"/dashboard/foods"}
           className={` py-2 px-10 rounded-2xl  ${pathname === "/foods" ? "bg-black text-white" : ""}`}
         >
           Foods
         </Link>
         <Link
-          href={"/orders"}
+          href={"/dashboard/orders"}
           className={` py-2 px-10 rounded-2xl  ${pathname === "/orders" ? "bg-black text-white" : ""}`}
         >
           Orders
