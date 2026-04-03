@@ -1,6 +1,6 @@
 import { Category, FoodOrderItem, Order, User } from "./types";
 
-const urlCategory = `http://localhost:3001/category`;
+const urlCategory = `https://express-js-initial.onrender.com/category`;
 // const urlCategory = `https://express-js-initial.onrender.com/category/`;
 
 const options = {
@@ -25,7 +25,10 @@ type GetOrdersResponse = {
 };
 
 export const getOrdersAdmin = async () => {
-  const response = await fetch("http://localhost:3001/orders/admin", options);
+  const response = await fetch(
+    "https://express-js-initial.onrender.com/orders/admin",
+    options,
+  );
   const data: GetOrdersResponse = await response.json();
   return data.orders;
 };
@@ -47,7 +50,7 @@ export const editOrderAdmin = async (id: number, status: string) => {
     // };
     // await fetch(`http://localhost:3001/orders/${id}`, options);
 
-    await fetch(`http://localhost:3001/orders/${id}`, {
+    await fetch(`https://express-js-initial.onrender.com/orders/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

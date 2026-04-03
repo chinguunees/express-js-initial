@@ -5,6 +5,7 @@ import { getCategory } from "@/app/lib/api";
 
 const Foods = async () => {
   const categories = await getCategory();
+  console.log(categories);
 
   const filteredCategories = categories.filter(
     (category) => category.foods.length,

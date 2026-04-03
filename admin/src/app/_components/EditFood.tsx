@@ -54,7 +54,7 @@ export function EditFood({ food, categories }: EditFoodProps) {
       image: foodImage,
     };
     try {
-      await fetch(`http://localhost:3001/foods/${food.id}`, {
+      await fetch(`https://express-js-initial.onrender.com/foods/${food.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +72,7 @@ export function EditFood({ food, categories }: EditFoodProps) {
   const deleteFood = async () => {
     setLoading(true);
     try {
-      await fetch(`http://localhost:3001/foods/${food.id}`, {
+      await fetch(`https://express-js-initial.onrender.com/foods/${food.id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
