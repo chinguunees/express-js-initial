@@ -3,40 +3,8 @@
 import { Category, FoodOrderItem, Order, User } from "./types";
 import { cookies } from "next/headers";
 
-const urlCategory = `https://express-js-initial.onrender.com/category`;
-// const urlCategory = `https://express-js-initial.onrender.com/category/`;
-
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    authorization: `Bearer ${process.env.TOKEN}`,
-    cache: "no-store",
-  },
-};
-type GetCategoryResponse = {
-  category: Category[];
-};
-
-// export const getCategory = async () => {
-//   const cookieStore = await cookies();
-//   const token = cookieStore.get("token")?.value;
-//   const response = await fetch(urlCategory, options);
-//   const data: GetCategoryResponse = await response.json();
-//   return data.category;
-// };
-
 type GetOrdersResponse = {
   orders: Order[];
-};
-
-export const getOrdersAdmin = async () => {
-  const response = await fetch(
-    "https://express-js-initial.onrender.com/orders/admin",
-    options,
-  );
-  const data: GetOrdersResponse = await response.json();
-  return data.orders;
 };
 
 export const editOrderAdmin = async (id: number, status: string) => {
