@@ -19,9 +19,10 @@ import {
 } from "@/components/ui/select";
 import { Datepicker } from "@/app/_components/Date-picker";
 import { DeliveryButton } from "@/app/_components/DeliverButton";
+import { getOrdersAdminNew } from "@/app/lib/get-orders-Admin";
 
 const Orders = async () => {
-  const ordersAdmin = await getOrdersAdmin();
+  const ordersAdmin = await getOrdersAdminNew();
 
   return (
     <div className="font-display ml-10">

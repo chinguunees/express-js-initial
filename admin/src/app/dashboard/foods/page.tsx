@@ -1,10 +1,11 @@
 import { AddFoodTest } from "@/app/_components/AddFoodTest";
 import CategoriesList from "@/app/_components/categories";
 import { FoodCard } from "@/app/_components/FoodCard";
-import { getCategory } from "@/app/lib/api";
+
+import { getCategoryNew } from "@/app/lib/get-category";
 
 const Foods = async () => {
-  const categories = await getCategory();
+  const categories = await getCategoryNew();
   console.log(categories);
 
   const filteredCategories = categories.filter(

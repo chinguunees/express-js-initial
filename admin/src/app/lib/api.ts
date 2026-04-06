@@ -1,5 +1,7 @@
-import { cache } from "react";
+"use server";
+
 import { Category, FoodOrderItem, Order, User } from "./types";
+import { cookies } from "next/headers";
 
 const urlCategory = `https://express-js-initial.onrender.com/category`;
 // const urlCategory = `https://express-js-initial.onrender.com/category/`;
@@ -16,11 +18,13 @@ type GetCategoryResponse = {
   category: Category[];
 };
 
-export const getCategory = async () => {
-  const response = await fetch(urlCategory, options);
-  const data: GetCategoryResponse = await response.json();
-  return data.category;
-};
+// export const getCategory = async () => {
+//   const cookieStore = await cookies();
+//   const token = cookieStore.get("token")?.value;
+//   const response = await fetch(urlCategory, options);
+//   const data: GetCategoryResponse = await response.json();
+//   return data.category;
+// };
 
 type GetOrdersResponse = {
   orders: Order[];

@@ -1,9 +1,9 @@
-import { getCategory } from "@/app/lib/api";
 import { Button } from "@/components/ui/button";
 import { AddCategory } from "./AddCategory";
+import { getCategoryNew } from "../lib/get-category";
 
 const CategoriesList = async () => {
-  const category = await getCategory();
+  const category = await getCategoryNew();
 
   return (
     <div className="w-[1171px] h-[176px] bg-white rounded-2xl flex flex-col font-display">
