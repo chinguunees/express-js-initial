@@ -7,7 +7,7 @@ import {
 import { useState } from "react";
 
 type CldUploadProps = {
-  onUploadSuccess: (url: string) => void; // ✅ accept callback
+  onUploadSuccess: (url: string) => void;
 };
 
 const preset = "Chinguunii";
