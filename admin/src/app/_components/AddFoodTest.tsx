@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
 import { CategorySelector } from "./CategorySelector";
 import { Category } from "@/app/lib/types";
+import { addFood } from "../lib/add-food";
 
 type AddFoodTestProps = {
   categories: Category[];
@@ -45,28 +46,34 @@ export function AddFoodTest({ categories }: AddFoodTestProps) {
   };
   const onAddFood = async () => {
     setLoading(true);
-    const postBody = {
+    const newFood = {
       name: foodName,
       price: priceValue,
       foodCategoryId: Number(category),
       image: foodImage,
     };
+
     try {
-      await fetch("https://express-js-initial.onrender.com/foods", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-store",
-        body: JSON.stringify(postBody),
-      });
+      await addFood(newFood);
       setOpen(false);
       router.refresh();
     } catch (error) {
       console.log(error);
     }
-
     setLoading(false);
+    // try {
+    //   await fetch("https://express-js-initial.onrender.com/foods", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(postBody),
+    //   });
+    //   setOpen(false);
+    //   router.refresh();
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   return (
