@@ -94,7 +94,11 @@ export function AddFoodTest({ categories }: AddFoodTestProps) {
           </div>
         </DialogTrigger>
 
-        <DialogContent className="sm:max-w-md">
+        <DialogContent
+          className="sm:max-w-md"
+          onPointerDownOutside={(e) => e.preventDefault()} // ✅ prevents dialog from stealing focus
+          onInteractOutside={(e) => e.preventDefault()} // ✅ keeps dialog open when widget opens
+        >
           <DialogHeader>
             <DialogTitle>Add new</DialogTitle>
           </DialogHeader>
