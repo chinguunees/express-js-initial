@@ -49,6 +49,7 @@ export function EditFood({ food, categories }: EditFoodProps) {
   const onAddFood = async () => {
     setLoading(true);
     const postBody = {
+      id: food.id,
       name: foodName,
       price: priceValue,
       foodCategoryId: Number(category),
@@ -84,7 +85,7 @@ export function EditFood({ food, categories }: EditFoodProps) {
   const deleteFood = async () => {
     setLoading(true);
     try {
-      await deleteFoods(food.id);
+      await deleteFoods(food);
       setOpen(false);
       router.refresh();
     } catch (error) {
