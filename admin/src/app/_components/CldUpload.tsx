@@ -6,9 +6,13 @@ import {
 } from "next-cloudinary";
 import { useState } from "react";
 
+type CldUploadProps = {
+  onUploadSuccess: (url: string) => void; // ✅ accept callback
+};
+
 const preset = "Chinguunii";
 
-export const CldUpload = () => {
+export const CldUpload = ({ onUploadSuccess }: CldUploadProps) => {
   const [image, setImage] = useState("");
   const onUploadImage = (result: CloudinaryUploadWidgetResults) => {
     const info = result.info;

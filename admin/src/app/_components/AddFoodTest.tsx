@@ -1,6 +1,5 @@
 "use client";
 
-import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LoaderCircle } from "lucide-react";
@@ -39,8 +38,8 @@ export function AddFoodTest({ categories }: AddFoodTestProps) {
   const onChangePrice: ChangeEventHandler<HTMLInputElement> = (event) => {
     setPriceValue(event.target.value);
   };
-  const onChangeImage: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setFoodImage(event.target.value);
+  const onUploadSuccess = (url: string) => {
+    setFoodImage(url); //
   };
   const onSelect = (categoryId: string) => {
     setCategory(categoryId);
@@ -104,9 +103,18 @@ export function AddFoodTest({ categories }: AddFoodTestProps) {
               <Label className="w-40">Dish name</Label>
               <Input type="text" onChange={onChange} />
             </div>
-            <div className="flex gap-2">
-              <Label className="w-40">Image URL</Label>
-              <Input type="text" onChange={onChangeImage} />
+            <div className="flex flex-col gap-1 w-full">
+              <div className="flex gap-2 items-center">
+                <Label className="w-40">Image</Label>
+                <CldUpload onUploadSuccess={onUploadSuccess} /> {/* ✅ */}
+              </div>
+              {foodImage && (
+                <img
+                  src={foodImage}
+                  alt="preview"
+                  className="w-24 h-24 object-cover rounded-lg mx-auto"
+                />
+              )}
             </div>
             {/* <div className="flex gap-2">
               <Label className="w-40">Ingredients</Label>
@@ -126,7 +134,6 @@ export function AddFoodTest({ categories }: AddFoodTestProps) {
             <Button type="button" onClick={onAddFood} disabled={loading}>
               {loading ? <LoaderCircle className="animate-spin" /> : "Add Dish"}
             </Button>
-            <CldUpload></CldUpload>
           </DialogFooter>
         </DialogContent>
       </Dialog>
