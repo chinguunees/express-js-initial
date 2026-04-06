@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import { CategorySelector } from "./CategorySelector";
 import { Category } from "@/app/lib/types";
 import { addFood } from "../lib/add-food";
+import { CldUpload } from "./CldUpload";
 
 type AddFoodTestProps = {
   categories: Category[];
@@ -125,6 +126,7 @@ export function AddFoodTest({ categories }: AddFoodTestProps) {
             <Button type="button" onClick={onAddFood} disabled={loading}>
               {loading ? <LoaderCircle className="animate-spin" /> : "Add Dish"}
             </Button>
+            <CldUpload></CldUpload>
           </DialogFooter>
         </DialogContent>
       </Dialog>
