@@ -6,7 +6,7 @@ import {
   CloudinaryUploadWidgetResults,
 } from "next-cloudinary";
 
-const preset = "Food_Delivery_Images";
+const preset = "Chinguunii";
 
 type CldUploadProps = {
   onUpload: (url: string) => void;
