@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChangeEventHandler, useState } from "react";
+import { addCategory } from "../lib/add-category";
 
 export function AddCategory() {
   const [open, setOpen] = useState(false);
@@ -30,14 +31,7 @@ export function AddCategory() {
       name: categoryName,
     };
     try {
-      await fetch("https://express-js-initial.onrender.com/category", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-store",
-        body: JSON.stringify(postBody),
-      });
+      await addCategory(postBody);
       setOpen(false);
     } catch (error) {
       console.log(error);
