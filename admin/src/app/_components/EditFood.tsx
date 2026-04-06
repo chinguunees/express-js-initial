@@ -84,7 +84,7 @@ export function EditFood({ food, categories }: EditFoodProps) {
   const deleteFood = async () => {
     setLoading(true);
     try {
-      await deleteFoods;
+      await deleteFoods(food.id);
       setOpen(false);
       router.refresh();
     } catch (error) {
