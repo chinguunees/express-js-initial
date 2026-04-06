@@ -111,7 +111,7 @@ export function AddFoodTest({ categories }: AddFoodTestProps) {
             <div className="flex flex-col gap-1 w-full">
               <div className="flex gap-2 items-center">
                 <Label className="w-40">Image</Label>
-                <CldUpload onUploadSuccess={onUploadSuccess} /> {/* ✅ */}
+                <CldUpload onUpload={onUploadSuccess} /> {/* ✅ */}
               </div>
               {foodImage && (
                 <img
