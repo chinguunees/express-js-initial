@@ -24,7 +24,14 @@ export const CldUpload = ({ onUploadSuccess }: CldUploadProps) => {
   return (
     <CldUploadWidget uploadPreset={preset} onSuccess={onUploadImage}>
       {({ open }) => {
-        return <button onClick={() => open()}>Upload Image</button>;
+        return (
+          <button
+            onClick={() => open()}
+            className="text-sm border px-3 py-1 rounded-md hover:bg-gray-100"
+          >
+            Upload Image
+          </button>
+        );
       }}
     </CldUploadWidget>
   );
