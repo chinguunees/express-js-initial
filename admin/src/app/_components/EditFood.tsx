@@ -1,6 +1,5 @@
 "use client";
 
-import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { LoaderCircle } from "lucide-react";
@@ -18,6 +17,8 @@ import { useRouter } from "next/navigation";
 import { CategorySelector } from "./CategorySelector";
 import { Category, Food } from "@/app/lib/types";
 import { Pencil } from "lucide-react";
+import { editFood } from "../lib/edit-food";
+import { deleteFoods } from "../lib/delete-food";
 
 type EditFoodProps = {
   food: Food;
@@ -54,32 +55,36 @@ export function EditFood({ food, categories }: EditFoodProps) {
       image: foodImage,
     };
     try {
-      await fetch(`https://express-js-initial.onrender.com/foods/${food.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-store",
-        body: JSON.stringify(postBody),
-      });
+      await editFood(postBody);
       setOpen(false);
       router.refresh();
     } catch (error) {
       console.log(error);
     }
-
     setLoading(false);
   };
+  //   try {
+  //     await fetch(`https://express-js-initial.onrender.com/foods/${food.id}`, {
+  //       method: "PUT",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       cache: "no-store",
+  //       body: JSON.stringify(postBody),
+  //     });
+  //     setOpen(false);
+  //     router.refresh();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+
+  //   setLoading(false);
+  // }
+
   const deleteFood = async () => {
     setLoading(true);
     try {
-      await fetch(`https://express-js-initial.onrender.com/foods/${food.id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-store",
-      });
+      await deleteFoods;
       setOpen(false);
       router.refresh();
     } catch (error) {
