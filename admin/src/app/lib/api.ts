@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { Category, FoodOrderItem, Order, User } from "./types";
 
 const urlCategory = `https://express-js-initial.onrender.com/category`;
@@ -8,6 +9,7 @@ const options = {
   headers: {
     accept: "application/json",
     authorization: `Bearer ${process.env.TOKEN}`,
+    cache: "no-store",
   },
 };
 type GetCategoryResponse = {
@@ -55,6 +57,7 @@ export const editOrderAdmin = async (id: number, status: string) => {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-store",
       body: JSON.stringify(body),
     });
   } catch (error) {

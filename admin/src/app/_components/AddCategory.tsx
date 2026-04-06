@@ -35,6 +35,7 @@ export function AddCategory() {
         headers: {
           "Content-Type": "application/json",
         },
+        cache: "no-store",
         body: JSON.stringify(postBody),
       });
       setOpen(false);

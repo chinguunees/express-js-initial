@@ -59,6 +59,7 @@ export function EditFood({ food, categories }: EditFoodProps) {
         headers: {
           "Content-Type": "application/json",
         },
+        cache: "no-store",
         body: JSON.stringify(postBody),
       });
       setOpen(false);
@@ -77,6 +78,7 @@ export function EditFood({ food, categories }: EditFoodProps) {
         headers: {
           "Content-Type": "application/json",
         },
+        cache: "no-store",
       });
       setOpen(false);
       router.refresh();
