@@ -24,20 +24,20 @@ type dataType = {
 };
 
 export async function Profile() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("token")?.value;
+  // const cookieStore = await cookies();
+  // const token = cookieStore.get("token")?.value;
 
-  const response = await fetch(
-    "https://express-js-initial.onrender.com/users/auth/me",
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-    },
-  );
-  const data: dataType = await response.json();
+  // const response = await fetch(
+  //   "https://express-js-initial.onrender.com/users/auth/me",
+  //   {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       authorization: `Bearer ${token}`,
+  //     },
+  //   },
+  // );
+  // const data: dataType = await response.json();
 
   return (
     <div className="max-w-[1440px] flex items-end justify-end mb-10">
@@ -48,7 +48,7 @@ export async function Profile() {
         <DropdownMenuContent>
           <DropdownMenuItem>
             <UserIcon />
-            {data.user.email}
+            Profile
           </DropdownMenuItem>
           <DropdownMenuItem>
             <CreditCardIcon />
