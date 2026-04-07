@@ -13,7 +13,7 @@ import {
   SettingsIcon,
   UserIcon,
 } from "lucide-react";
-import { cookies } from "next/headers";
+import Link from "next/link";
 
 type dataType = {
   user: {
@@ -61,7 +61,7 @@ export async function Profile() {
           <DropdownMenuSeparator />
           <DropdownMenuItem variant="destructive">
             <LogOutIcon />
-            Log out
+            <Link href={"/"}>Log out</Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
