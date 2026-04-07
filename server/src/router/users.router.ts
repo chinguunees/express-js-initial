@@ -12,6 +12,7 @@ import { me } from "../controller/users/me";
 const router = express.Router();
 
 router.get("/", getUsers);
+router.get("/auth/me", authMiddleware, me);
 router.get("/:id", getUserById);
 
 router.post("/", addUser);
@@ -20,7 +21,5 @@ router.delete("/:id", authMiddleware, adminMiddleware, deleteUser);
 router.put("/:id", authMiddleware, adminMiddleware, editUser);
 
 router.post("/login", loginUser);
-
-router.get("/auth/me", authMiddleware, me);
 
 export default router;
