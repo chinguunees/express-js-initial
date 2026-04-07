@@ -13,15 +13,31 @@ import {
   SettingsIcon,
   UserIcon,
 } from "lucide-react";
+import { cookies } from "next/headers";
+
+type dataType = {
+  user: {
+    email: string;
+    age: number;
+    id: number;
+  };
+};
 
 export async function Profile() {
-  // const response = await fetch("/api/user/auth", {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // });
-  // const data = await response.json();
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+
+  const response = await fetch(
+    "https://express-js-initial.onrender.com/users/auth/me",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    },
+  );
+  const data: dataType = await response.json();
 
   return (
     <div className="max-w-[1440px] flex items-end justify-end mb-10">
@@ -32,7 +48,7 @@ export async function Profile() {
         <DropdownMenuContent>
           <DropdownMenuItem>
             <UserIcon />
-            Profile
+            {data.user.email}
           </DropdownMenuItem>
           <DropdownMenuItem>
             <CreditCardIcon />
