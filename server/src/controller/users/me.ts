@@ -13,6 +13,8 @@ export const me = async (req: Request, res: Response) => {
       },
     });
     if (!user) return res.status(400).json({ message: "user not found" });
+
+    return res.status(200).json({ user });
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: "invalid" });
